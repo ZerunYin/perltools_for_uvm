@@ -65,8 +65,9 @@ endmodule
 EOF
 close FH;
 
-system("vcs -full64 -sverilog -debug_access+r -kdb ast_test.sv");
-system("./simv -gui=verdi &");
+# refer to VCS UG for detail about assert related options
+system("vcs -full64 -sverilog -debug_access+r -assert enable_diag -kdb ast_test.sv");
+system("./simv -l vcs_run.log +fsdb+sva_success -gui=verdi &");
 
 # ---------------------------------------------------------------------------- #
 sub parse_line {
